@@ -1,4 +1,4 @@
-package me.jorlowski;
+package me.jorlowski.factory_method;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ class Database extends AbstractTableModel {
 
     public void addRow() {
         List<TableData> row = new ArrayList<>();
-        for (TableHeader ignored : headers) {
-            row.add(new TableDataInt()); // wywołanie metody fabrykującej
+        for (TableHeader col : headers) {
+            row.add(col.getTableData()); // wywołanie metody fabrykującej
         }
         data.add(row);
         fireTableStructureChanged();
@@ -25,7 +25,7 @@ class Database extends AbstractTableModel {
     public void addCol(TableHeader type) {
         headers.add(type);
         for (List<TableData> row : data) {
-            row.add(new TableDataInt()); // wywołanie metody fabrykującej
+            row.add(type.getTableData()); // wywołanie metody fabrykującej
         }
         fireTableStructureChanged();
     }

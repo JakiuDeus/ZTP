@@ -1,4 +1,4 @@
-package me.jorlowski;
+package me.jorlowski.factory_method;
 class TableDataInt implements TableData {
     private final int data;
 

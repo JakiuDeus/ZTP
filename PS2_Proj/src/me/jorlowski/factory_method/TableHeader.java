@@ -1,6 +1,6 @@
-package me.jorlowski;
+package me.jorlowski.factory_method;
 
-class TableHeader {
+public abstract class TableHeader {
     private final String type;
 
     public TableHeader(String type) {
@@ -10,5 +10,7 @@ class TableHeader {
     public String toString() {
         return type;
     }
+
+    public abstract TableData getTableData();
     
 }

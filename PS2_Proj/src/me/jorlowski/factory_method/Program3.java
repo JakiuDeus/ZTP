@@ -1,4 +1,4 @@
-package me.jorlowski;
+package me.jorlowski.factory_method;
 
 import javax.swing.*;
 import java.util.logging.Level;
@@ -43,10 +43,10 @@ public class Program3 {
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 new TableHeader[] {
-                    new TableHeader("INT"),
-                    new TableHeader("DOUBLE"),
-                    new TableHeader("CHAR"),
-                    new TableHeader("BOOLEAN"),
+                    new TableHeaderInt("INT"),
+                    new TableHeaderDouble("DOUBLE"),
+                    new TableHeaderChar("CHAR"),
+                    new TableHeaderBoolean("BOOLEAN"),
                 }, null);
             if(option == null)
                 return;
