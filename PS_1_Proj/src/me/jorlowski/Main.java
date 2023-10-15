@@ -16,9 +16,9 @@ public class Main {
         System.out.println(polaczenia.get(1) == polaczenia.get(3));
         System.out.println(polaczenia.get(2) == polaczenia.get(3));
         polaczenia.get(0).set(0, '@');
-        polaczenia.stream().forEach(p -> System.out.println(p.get(0)));
+        polaczenia.forEach(p -> System.out.println(p.get(0)));
         polaczenia.get(2).set(2, 'a');
-        polaczenia.stream().forEach(p -> System.out.println(p.length()));
-        polaczenia.stream().forEach(p -> System.out.println(p.get(2)));
+        polaczenia.forEach(p -> System.out.println(p.length()));
+        polaczenia.forEach(p -> System.out.println(p.get(2)));
     }
 }
