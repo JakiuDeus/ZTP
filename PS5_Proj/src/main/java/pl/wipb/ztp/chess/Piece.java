@@ -4,41 +4,48 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
 
-class Piece {
-	public static final int TILESIZE = 32;
-	protected static Image image;
-	
+class Piece implements IPiece {
+	private static Image image;
+	private int index, x, y;
+
 	static {
 		try {
-			image = Chessboard.loadImage("/img/pieces4.png");
+			image = Main.getImage("pieces4.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	protected int index, x, y;
-
-	public Piece(int idx, int xx, int yy) {
-		index = idx;
-		x = xx;
-		y = yy;
+	public Piece(int index, int x, int y) {
+		this.index = index;
+		this.x = x;
+		this.y = y;
 	}
 
+	@Override
 	public void draw(Graphics2D g) {
-		g.drawImage(image, x, y, x + TILESIZE, y + TILESIZE, index * TILESIZE, 0, (index + 1) * TILESIZE, TILESIZE,
+		g.drawImage(image, x, y,
+				x + 1, y + 1,
+				index * TILESIZE, 0,
+				(index + 1) * TILESIZE, TILESIZE,
 				null);
 	}
-
+	@Override
 	public int getX() {
 		return x;
 	}
-
+	@Override
 	public int getY() {
 		return y;
 	}
+	@Override
+	public void moveTo(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 
-	public void moveTo(int xx, int yy) {
-		x = xx;
-		y = yy;
+	@Override
+	public IPiece getDecorated() {
+		return null;
 	}
 }
