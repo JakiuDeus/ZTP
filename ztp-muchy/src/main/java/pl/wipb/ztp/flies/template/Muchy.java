@@ -14,7 +14,14 @@ public class Muchy extends JPanel implements Runnable {
 		this.setPreferredSize(new Dimension(640, 480));
 		ar = new Mucha[30];
 		for (int i = 0; i < ar.length; ++i)
-			ar[i] = new Mucha();
+			if (i%3 == 0) {
+				ar[i] = new NormalnaMucha();
+			} else if (i%3 == 1) {
+				ar[i] = new LosMucha();
+			} else {
+				ar[i] = new KoloMucha();
+			}
+
 	}
 
 	@Override

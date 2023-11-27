@@ -3,6 +3,6 @@ package me.ztpteam.factory_method;
 public class ExpressShipment implements Shipment {
     @Override
     public void deliver() {
-        // TODO shipment implementation
+        System.out.println("Express shipment delivered");
     }
 }

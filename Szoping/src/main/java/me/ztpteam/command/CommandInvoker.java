@@ -1,6 +1,6 @@
 package me.ztpteam.command;
 
-public class ShipmentInvoker {
+public class CommandInvoker {
     private Command command;
     public void setCommand(Command command) {
         this.command = command;

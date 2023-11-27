@@ -4,21 +4,28 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-class Mucha {
+abstract class Mucha {
 	
 	private final double k = 0.01;
 	double x, y; // pozycja muchy
 	double vx, vy; // predkosc muchy
+	double r;
+	int t, dt;
+	double angle;
 
 	public Mucha() {
-		x = Math.random();
-		y = Math.random();
+		angle = Math.random() * 2 * Math.PI;
+		r = Math.random() / 100;
+		dt = (int)(Math.random()*100) + 20;
+		t = (int)(Math.random()*dt);
+		x = Math.random()/1.1;
+		y = Math.random()/1.1;
 		vx = k * (Math.random() - Math.random());
 		vy = k * (Math.random() - Math.random());
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.black);
+		g.setColor(getColor());
 		Rectangle rc = g.getClipBounds();
 		int a = (int)(x*rc.getWidth()),
 			b = (int)(y*rc.getHeight());
@@ -26,11 +33,9 @@ class Mucha {
 	}
 	
 	public void move() {
-		x += vx;
-		y += vy;
-		if(x<0) { x = -x; vx = -vx; }
-		if(x>1) { x = 2-x;vx = -vx; }
-		if(y<0) { y = -y; vy = -vy; }
-		if(y>1) { y = 2-y;vy = -vy; }
+		calculateMove();
 	}
+
+	protected abstract void calculateMove();
+	protected abstract Color getColor();
 }

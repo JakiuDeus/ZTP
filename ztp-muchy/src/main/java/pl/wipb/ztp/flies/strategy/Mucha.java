@@ -8,29 +8,24 @@ class Mucha {
 	
 	private final double k = 0.01;
 	double x, y; // pozycja muchy
-	double vx, vy; // predkosc muchy
+	double r;
+	int t, dt;
+	double angle;
+
 
 	public Mucha() {
-		x = Math.random();
-		y = Math.random();
-		vx = k * (Math.random() - Math.random());
-		vy = k * (Math.random() - Math.random());
+		angle = Math.random() * 2 * Math.PI;
+		x = Math.random()/1.1;
+		y = Math.random()/1.1;
+		r = Math.random() / 100;
+		dt = (int)(Math.random()*100) + 20;
+		t = (int)(Math.random()*dt);
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.black);
 		Rectangle rc = g.getClipBounds();
 		int a = (int)(x*rc.getWidth()),
 			b = (int)(y*rc.getHeight());
 		g.fillOval(a, b, 5, 5);
-	}
-	
-	public void move() {
-		x += vx;
-		y += vy;
-		if(x<0) { x = -x; vx = -vx; }
-		if(x>1) { x = 2-x;vx = -vx; }
-		if(y<0) { y = -y; vy = -vy; }
-		if(y>1) { y = 2-y;vy = -vy; }
 	}
 }
