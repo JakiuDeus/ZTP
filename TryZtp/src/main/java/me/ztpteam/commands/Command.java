@@ -4,5 +4,6 @@ import me.ztpteam.ComponentType;
 
 public interface Command {
     void execute();
-    ComponentType getType();
+    ComponentType getComponentType();
+    CommandType getCommandType();
 }

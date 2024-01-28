@@ -19,8 +19,13 @@ public class TuneLightCommand implements Command {
     }
 
     @Override
-    public ComponentType getType() {
+    public ComponentType getComponentType() {
         return ComponentType.TUNABLE_LIGHT;
+    }
+
+    @Override
+    public CommandType getCommandType() {
+        return CommandType.TUNE_LIGHT;
     }
 
     public void setTuneVal(byte tuneVal) {

@@ -16,8 +16,13 @@ public class SwitchOnOffCommand implements Command {
     }
 
     @Override
-    public ComponentType getType() {
+    public ComponentType getComponentType() {
         return ComponentType.BASIC_LIGHT;
+    }
+
+    @Override
+    public CommandType getCommandType() {
+        return CommandType.SWITCH_ON_OFF;
     }
 
     @Override

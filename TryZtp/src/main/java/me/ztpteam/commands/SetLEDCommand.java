@@ -19,8 +19,13 @@ public class SetLEDCommand implements Command {
     }
 
     @Override
-    public ComponentType getType() {
+    public ComponentType getComponentType() {
         return ComponentType.LED;
+    }
+
+    @Override
+    public CommandType getCommandType() {
+        return CommandType.SET_LED;
     }
 
     public void setLedVal(String ledVal) {
