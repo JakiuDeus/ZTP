@@ -21,6 +21,7 @@ public class App
         Board board = new Board();
         List<BasicComponent> components = board.initGetComponents();
         for (BasicComponent bc : components) {
+            System.out.println(bc.getType());
             System.out.println(bc.getStatus());
             bc.getCommands().forEach(c -> System.out.println("\t" + c.getType() + " " + c));
         }

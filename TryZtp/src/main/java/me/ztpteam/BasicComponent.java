@@ -7,4 +7,5 @@ import java.util.List;
 public interface BasicComponent {
     List<Command> getCommands();
     String getStatus();
+    List<ComponentType> getType();
 }

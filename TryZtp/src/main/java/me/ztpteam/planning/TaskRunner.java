@@ -5,8 +5,20 @@ import java.util.Date;
 import java.util.List;
 
 public class TaskRunner extends Thread{
+
+    private static TaskRunner instance;
     private long date;
     private List<Task> tasks;
+
+    private TaskRunner() {}
+
+    public TaskRunner getInstance() {
+        if (instance == null) {
+            instance = new TaskRunner();
+            return instance;
+        }
+        return instance;
+    }
 
     @Override
     public void run() {

@@ -6,6 +6,7 @@ import me.ztpteam.commands.Command;
 import me.ztpteam.commands.SwitchOnOffCommand;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BasicLight implements Light {
@@ -19,6 +20,7 @@ public class BasicLight implements Light {
 
     public BasicLight() {
         isOn = false;
+        type = ComponentType.BASIC_LIGHT;
     }
 
     public void decorate(Light light) {
@@ -34,6 +36,12 @@ public class BasicLight implements Light {
             }
         });
         return commands;
+    }
+
+    public List<ComponentType> getType() {
+        ArrayList<ComponentType> componentTypeList = new ArrayList<>();
+        componentTypeList.add(type);
+        return componentTypeList;
     }
 
     @Override

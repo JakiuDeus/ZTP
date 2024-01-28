@@ -20,9 +20,6 @@ public class LED implements Light {
     public String getLedVal() {
         return hexRGB;
     }
-    public ComponentType getType() {
-        return type;
-    }
 
     @Override
     public void decorate(Light light) {
@@ -36,6 +33,12 @@ public class LED implements Light {
         return commands;
     }
 
+    @Override
+    public List<ComponentType> getType() {
+        List<ComponentType> componentTypeList = light.getType();
+        componentTypeList.add(type);
+        return componentTypeList;
+    }
     @Override
     public String getStatus() {
         return light.getStatus() + "\nLED: hex Color = " + hexRGB;

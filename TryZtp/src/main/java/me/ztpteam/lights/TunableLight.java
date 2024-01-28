@@ -19,9 +19,6 @@ public class TunableLight implements Light {
         type = ComponentType.TUNABLE_LIGHT;
     }
 
-    public ComponentType getType() {
-        return type;
-    }
     public byte getTune() {
         return tune;
     }
@@ -37,6 +34,12 @@ public class TunableLight implements Light {
         return commands;
     }
 
+    @Override
+    public List<ComponentType> getType() {
+        List<ComponentType> componentTypeList = light.getType();
+        componentTypeList.add(type);
+        return componentTypeList;
+    }
     @Override
     public String getStatus() {
         return light.getStatus() + "\nTunable light: tune value = " + tune;
