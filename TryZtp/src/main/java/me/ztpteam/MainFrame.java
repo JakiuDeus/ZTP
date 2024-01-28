@@ -4,7 +4,10 @@ import me.ztpteam.commands.Command;
 import me.ztpteam.commands.SeeInfoCommand;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +22,14 @@ public class MainFrame extends JFrame {
     private JPanel rightPanel;
     private InfoPanel infoPanel;
     private final JSplitPane splitPane;
+    private int sizeList = 40;
+
+    private final JButton addButton = new JButton("dodaj");
+    private final JLabel taskListLabel = new JLabel("Zaplanowane akcje");
+
+
+
+
 
     public MainFrame(String title, Map<Integer, BasicComponent> components) {
         super(title);
@@ -26,14 +37,23 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         buttonPanel = new ButtonPanel(this, components);
         taskPanel = new JPanel();
+        taskPanel.setLayout(new GridLayout(sizeList,1,10,10));
+        JPanel firstPanel = new JPanel();
+        firstPanel.setBackground(Color.WHITE);
+        firstPanel.add(taskListLabel);
+        firstPanel.setPreferredSize(new Dimension(450, 150));
+        firstPanel.setBorder(new LineBorder(Color.BLACK, 1));
+        firstPanel.add(addButton);
+        taskPanel.add(firstPanel);
+        addButton.addActionListener(addButtonFunctionality(components));
         infoPanel = new InfoPanel();
+        JScrollPane rightPanel = new JScrollPane(taskPanel);
+        rightPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         leftPanel = new JPanel(new CardLayout());
+        leftPanel.setPreferredSize(new Dimension(720,720));
         leftPanel.add(buttonPanel, BUTTON_PANEL);
         leftPanel.add(infoPanel, INFO_PANEL);
-        rightPanel = new JPanel();
-        rightPanel.add(taskPanel);
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, rightPanel);
-
         add(splitPane);
         setVisible(true);
     }
@@ -48,49 +68,21 @@ public class MainFrame extends JFrame {
         CardLayout cl = (CardLayout)leftPanel.getLayout();
         cl.show(leftPanel, BUTTON_PANEL);
     }
-}
+    private ActionListener addButtonFunctionality(Map<Integer, BasicComponent> components){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(taskPanel.getComponentCount()< sizeList-1){
 
-class InfoPanel extends JPanel {
-    private JLabel l1 = new JLabel("Empty");
-    private JLabel l2 = new JLabel("Empty2");
-    private Box box;
-    public InfoPanel() {
-        l1.setFont(new Font("Serif", Font.PLAIN, 26));
-        l2.setFont(new Font("Serif", Font.PLAIN, 26));
-        box = Box.createVerticalBox();
-        add(box);
-        box.add(l1);
-        box.add(l2);
-    }
-    public void setComponent(BasicComponent component) {
-        StringBuilder sb = new StringBuilder();
-        component.getType().forEach(type -> sb.append(type.getName()).append(" "));
-        l1.setText(sb.toString());
-        l2.setText("<html>"+component.getStatus()+"</html>");
-    }
-}
+                    taskPanel.add(new SingleTask(taskPanel.getComponentCount(), taskPanel, components));
+                    taskPanel.revalidate();
+                    taskPanel.repaint();
 
-class ButtonPanel extends JPanel {
-    ImageIcon bulb = new ImageIcon("/lightbulb.jpg");
-    public ButtonPanel(MainFrame frame, Map<Integer, BasicComponent> components) {
-        setLayout(new GridLayout(4, 3));
-        components.keySet().forEach(k -> {
-            JButton button;
-            BasicComponent bc  = components.get(k);
-            if (bc == null) {
-                button = new JButton("Niepodpięty");
-                button.setEnabled(false);
-                button.setBackground(Color.orange);
-            } else {
-                button = new JButton(String.valueOf(bc.getType()));
-                button.setIcon(bulb);
-                button.setHorizontalTextPosition(AbstractButton.CENTER);
-                button.setVerticalTextPosition(AbstractButton.BOTTOM);
-                List<Command> commandList = bc.getCommands();
-                commandList.addFirst(new SeeInfoCommand(bc, frame));
-                button.addActionListener(e -> new OptionFrame(commandList));
+                }else{
+                    addButton.setEnabled(false);
+                }
             }
-            add(button);
-        });
+        };
     }
 }
+
