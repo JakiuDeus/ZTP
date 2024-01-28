@@ -14,7 +14,7 @@ public class Board {
     public Board() {
         components = new HashMap<>();
         ports = new ArrayList<>();
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<12; i++) {
             Port p = new Port(i);
             ports.add(i, p);
             components.put(p, null);
@@ -27,7 +27,7 @@ public class Board {
             return null;
         }
         Map<Integer, BasicComponent> newMap = new HashMap<>();
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<12; i++) {
             newMap.put(i, components.get(ports.get(i)));
         }
         return newMap;
