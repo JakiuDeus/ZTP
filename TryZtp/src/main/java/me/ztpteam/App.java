@@ -1,6 +1,7 @@
 package me.ztpteam;
 
 import me.ztpteam.boards.Board;
+import me.ztpteam.boards.Port;
 import me.ztpteam.commands.Command;
 import me.ztpteam.commands.SetLEDCommand;
 import me.ztpteam.lights.BasicLight;
@@ -8,6 +9,9 @@ import me.ztpteam.lights.LED;
 import me.ztpteam.lights.Light;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 /**
@@ -19,12 +23,25 @@ public class App
     public static void main( String[] args )
     {
         Board board = new Board();
-        List<BasicComponent> components = board.initGetComponents();
-        for (BasicComponent bc : components) {
-            System.out.println(bc.getType());
-            System.out.println(bc.getStatus());
-            bc.getCommands().forEach(c -> System.out.println("\t" + c.getType() + " " + c));
-        }
+        Map<Integer, BasicComponent> components = board.initGetComponents();
+        components.keySet().forEach(k -> {
+            if (components.get(k) == null) {
+                System.out.println("Port: " + k + ", : NULL");
+            } else {
+                System.out.println("Port: " + k + ", : " + components.get(k).getType().toString());
+            }
+        });
+
+
+//        for (BasicComponent bc : components) {
+//            System.out.println(bc.getType());
+//            System.out.println(bc.getStatus());
+//            bc.getCommands().forEach(c -> System.out.println("\t" + c.getType() + " " + c));
+//        }
+
+
+
+
 //        List<Command> commands = light.getCommands();
 //        System.out.println(commands);
 //        System.out.println();

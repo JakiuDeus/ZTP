@@ -22,6 +22,9 @@ public class Port {
         return Status.SUCCESS;
     }
 
+    public int getId() {
+        return id;
+    }
     public String getComponentType() {
         /*
         Dzieli się od lewej na sekwencję najbardziej znaczącą

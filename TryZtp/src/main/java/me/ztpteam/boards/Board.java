@@ -21,15 +21,19 @@ public class Board {
         }
     }
 
-    public List<BasicComponent> initGetComponents() {
+    public Map<Integer, BasicComponent> initGetComponents() {
         initialize();
         if(checkStatus() == Status.ERROR) {
             return null;
         }
-        return getComponentList();
+        Map<Integer, BasicComponent> newMap = new HashMap<>();
+        for (int i=0; i<10; i++) {
+            newMap.put(i, components.get(ports.get(i)));
+        }
+        return newMap;
     }
 
-    private List<BasicComponent> getComponentList() {
+    public List<BasicComponent> getComponentList() {
         List<BasicComponent> componentList = new ArrayList<>();
         for (Port p : ports) {
             BasicComponent component = components.get(p);
