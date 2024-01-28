@@ -1,15 +1,16 @@
 package me.ztpteam.lights;
 
-import me.ztpteam.BasicComponent;
 import me.ztpteam.ComponentType;
+import me.ztpteam.boards.Port;
+import me.ztpteam.boards.Status;
 import me.ztpteam.commands.Command;
 import me.ztpteam.commands.SwitchOnOffCommand;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BasicLight implements Light {
+    private Port port;
     private boolean isOn;
     private ComponentType type;
 
@@ -18,9 +19,14 @@ public class BasicLight implements Light {
         type = ComponentType.BASIC_LIGHT;
     }
 
-    public BasicLight() {
+    public BasicLight(Port port) {
         isOn = false;
         type = ComponentType.BASIC_LIGHT;
+        this.port = port;
+    }
+
+    public Port getPort() {
+        return port;
     }
 
     public void decorate(Light light) {
@@ -29,13 +35,13 @@ public class BasicLight implements Light {
 
     public List<Command> getCommands() {
         List<Command> commands = new ArrayList<>();
-        commands.add(new SwitchOnOffCommand(this) {
-            @Override
-            public void execute() {
-                isOn = !isOn;
-            }
-        });
+        commands.add(new SwitchOnOffCommand(this));
         return commands;
+    }
+
+    public Status switchOnOff() {
+        isOn = !isOn;
+        return port.send("SWITCH");
     }
 
     public List<ComponentType> getType() {
@@ -46,6 +52,6 @@ public class BasicLight implements Light {
 
     @Override
     public String getStatus() {
-        return "Basic Light: isOn = " + isOn;
+        return isOn ? "Włączone" : "Wyłączone";
     }
 }

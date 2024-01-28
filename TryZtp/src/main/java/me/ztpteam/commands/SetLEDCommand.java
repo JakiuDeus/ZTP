@@ -1,6 +1,7 @@
 package me.ztpteam.commands;
 
 import me.ztpteam.ComponentType;
+import me.ztpteam.boards.Status;
 import me.ztpteam.lights.LED;
 
 public class SetLEDCommand implements Command {
@@ -14,8 +15,8 @@ public class SetLEDCommand implements Command {
     }
 
     @Override
-    public void execute() {
-        led.setVal(ledVal);
+    public Status execute() {
+        return led.setVal(ledVal);
     }
 
     @Override

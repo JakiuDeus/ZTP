@@ -1,8 +1,9 @@
 package me.ztpteam.lights;
 
 import me.ztpteam.ComponentType;
+import me.ztpteam.boards.Port;
+import me.ztpteam.boards.Status;
 import me.ztpteam.commands.Command;
-import me.ztpteam.commands.SetLEDCommand;
 import me.ztpteam.commands.TuneLightCommand;
 
 import java.util.List;
@@ -11,12 +12,13 @@ public class TunableLight implements Light {
     private byte tune;
     private Light light;
     private ComponentType type;
-
+    private Port port;
 
     public TunableLight (Light light) {
         this.light = light;
         tune = 100;
         type = ComponentType.TUNABLE_LIGHT;
+        port = light.getPort();
     }
 
     public byte getTune() {
@@ -40,12 +42,19 @@ public class TunableLight implements Light {
         componentTypeList.add(type);
         return componentTypeList;
     }
+
     @Override
-    public String getStatus() {
-        return light.getStatus() + "\nTunable light: tune value = " + tune;
+    public Port getPort() {
+        return port;
     }
 
-    public void setVal(byte tuneVal) {
+    @Override
+    public String getStatus() {
+        return light.getStatus() + "<br/>Moc = " + tune;
+    }
+
+    public Status setVal(byte tuneVal) {
         tune = tuneVal;
+        return port.send("TUNE" + tune);
     }
 }

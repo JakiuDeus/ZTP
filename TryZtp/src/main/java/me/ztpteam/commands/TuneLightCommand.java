@@ -1,7 +1,7 @@
 package me.ztpteam.commands;
 
 import me.ztpteam.ComponentType;
-import me.ztpteam.lights.LED;
+import me.ztpteam.boards.Status;
 import me.ztpteam.lights.TunableLight;
 
 public class TuneLightCommand implements Command {
@@ -14,8 +14,8 @@ public class TuneLightCommand implements Command {
     }
 
     @Override
-    public void execute() {
-        light.setVal(tuneVal);
+    public Status execute() {
+        return light.setVal(tuneVal);
     }
 
     @Override

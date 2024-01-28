@@ -1,6 +1,8 @@
 package me.ztpteam.lights;
 
 import me.ztpteam.ComponentType;
+import me.ztpteam.boards.Port;
+import me.ztpteam.boards.Status;
 import me.ztpteam.commands.Command;
 import me.ztpteam.commands.SetLEDCommand;
 
@@ -10,11 +12,13 @@ public class LED implements Light {
     private String hexRGB;
     private Light light;
     private ComponentType type;
+    private Port port;
 
     public LED (Light light) {
         this.light = light;
         hexRGB = "#FFFFFF";
         type = ComponentType.LED;
+        port = light.getPort();
     }
 
     public String getLedVal() {
@@ -39,12 +43,19 @@ public class LED implements Light {
         componentTypeList.add(type);
         return componentTypeList;
     }
+
     @Override
-    public String getStatus() {
-        return light.getStatus() + "\nLED: hex Color = " + hexRGB;
+    public Port getPort() {
+        return port;
     }
 
-    public void setVal(String ledVal) {
+    @Override
+    public String getStatus() {
+        return light.getStatus() + "<br/>Kolor = " + hexRGB;
+    }
+
+    public Status setVal(String ledVal) {
         hexRGB = ledVal;
+        return port.send("COLOR:"+ledVal);
     }
 }

@@ -3,6 +3,7 @@ package me.ztpteam.commands;
 import me.ztpteam.BasicComponent;
 import me.ztpteam.ComponentType;
 import me.ztpteam.MainFrame;
+import me.ztpteam.boards.Status;
 
 import javax.swing.*;
 
@@ -17,8 +18,9 @@ public class SeeInfoCommand implements Command {
     }
     
     @Override
-    public void execute() {
-        frame.setInfoPanel();
+    public Status execute() {
+        frame.setInfoPanel(component);
+        return Status.SUCCESS;
     }
 
     @Override

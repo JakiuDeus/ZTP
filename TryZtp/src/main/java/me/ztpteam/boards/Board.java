@@ -57,10 +57,10 @@ public class Board {
         for (Port p : ports) {
             String componentType = p.getComponentType();
             switch (componentType) {
-                case "10" -> components.put(p, new BasicLight());
-                case "110" -> components.put(p, new LED(new BasicLight()));
-                case "120" -> components.put(p, new TunableLight(new BasicLight()));
-                case "1120" -> components.put(p, new LED(new TunableLight(new BasicLight())));
+                case "10" -> components.put(p, new BasicLight(p));
+                case "110" -> components.put(p, new LED(new BasicLight(p)));
+                case "120" -> components.put(p, new TunableLight(new BasicLight(p)));
+                case "1120" -> components.put(p, new LED(new TunableLight(new BasicLight(p))));
                 case "20" -> todo(); //components.put(p, new BasicFridge());
                 case "210" -> todo(); //components.put(p, new Refrigerator(new BasicFridge()));
                 case "30" -> todo(); //components.put(p, new CoffeeMachine());

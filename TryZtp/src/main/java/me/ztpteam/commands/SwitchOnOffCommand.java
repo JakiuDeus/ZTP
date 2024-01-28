@@ -1,6 +1,7 @@
 package me.ztpteam.commands;
 
 import me.ztpteam.ComponentType;
+import me.ztpteam.boards.Status;
 import me.ztpteam.lights.BasicLight;
 
 public class SwitchOnOffCommand implements Command {
@@ -10,9 +11,8 @@ public class SwitchOnOffCommand implements Command {
         this.light = light;
     }
 
-    @Override
-    public void execute() {
-
+    public Status execute() {
+        return light.switchOnOff();
     }
 
     @Override

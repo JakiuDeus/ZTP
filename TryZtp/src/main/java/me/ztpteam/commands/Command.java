@@ -1,9 +1,10 @@
 package me.ztpteam.commands;
 
 import me.ztpteam.ComponentType;
+import me.ztpteam.boards.Status;
 
 public interface Command {
-    void execute();
+    Status execute();
     ComponentType getComponentType();
     CommandType getCommandType();
 }
