@@ -1,6 +1,5 @@
 package me.ztpteam;
 
-import com.sun.tools.javac.Main;
 import me.ztpteam.boards.Board;
 
 import javax.swing.*;
@@ -17,6 +16,8 @@ public class App
     public static void main( String[] args )
     {
 
+        ImageIcon test = new ImageIcon(App.class.getResource("/lightbulb.jpg"));
+
         Board board = new Board();
         Map<Integer, BasicComponent> components = board.initGetComponents();
         MainFrame mainFrame = new MainFrame("SmartHome", components);
@@ -31,6 +32,19 @@ public class App
 //            } else {
 //                System.out.println("Port: " + k + ", : " + components.get(k).getType().toString());
 //            }
-//        });
+//        }
+//        // Wciśnięcie przycisku
+//        if (setLEDCommand != null) {
+//            setLEDCommand.setLedVal("#AABBAA");
+//            setLEDCommand.execute();
+//        }
+//
+//        for (Command command : commands) {
+//            if (command.getType() == ComponentType.BASIC_LIGHT) {
+//                command.execute();
+//            }
+//        }
+//        System.out.println(light.getStatus());
+//        System.out.println();
     }
 }
