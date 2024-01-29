@@ -23,10 +23,13 @@ public class TaskEdit extends JFrame {
         dateField.setBorder(new LineBorder(Color.BLACK, 1));
         dateField.setFont(new Font("Arial", Font.PLAIN, 40));
 
+
+
         titleField.setBounds(10,10, 480, 30);
         dateField.setBounds(10, 50, 120, 80);
         add(dateField);
         add(titleField);
+
 
         setVisible(true);
     }
