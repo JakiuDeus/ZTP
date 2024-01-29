@@ -1,10 +1,17 @@
 package me.ztpteam;
 
+import me.ztpteam.planning.Task;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 public class SingleTask extends JPanel {
@@ -24,6 +31,9 @@ public class SingleTask extends JPanel {
         add(taskTitle);
         taskTitle.setBounds(10,10, 480, 30);
 
+
+        Task task = new Task(new ArrayList<>(), new Date());
+
         JLabel taskDate = new JLabel("test");
         taskDate.setBorder(new LineBorder(Color.BLACK, 1));
         taskDate.setFont(new Font("Arial", Font.PLAIN, 40));
@@ -40,7 +50,7 @@ public class SingleTask extends JPanel {
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TaskEdit taskEdit = new TaskEdit("TaskEdit", components);
+                TaskEdit taskEdit = new TaskEdit(task, "TaskEdit", components);
             }
         });
         add(editButton);
