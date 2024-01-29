@@ -49,6 +49,7 @@ public class SingleTask extends JPanel {
 
         JButton onButton = new JButton(powerIcon);
         onButton.setBounds(222, 90, 50, 50);
+        onButton.setBackground(Color.white);
         add(onButton);
 
         JButton editButton = new JButton(editIcon);
@@ -61,6 +62,7 @@ public class SingleTask extends JPanel {
 
         JButton deleteButton = new JButton(deleteIcon);
         deleteButton.setBounds(388, 90, 50, 50);
+        deleteButton.setBackground(Color.white);
         deleteButton.addActionListener(e -> {
             taskPanel.remove(this);
             taskPanel.revalidate();

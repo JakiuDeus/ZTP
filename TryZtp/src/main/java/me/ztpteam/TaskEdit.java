@@ -10,7 +10,9 @@ import java.util.Date;
 import java.util.Map;
 
 public class TaskEdit extends JFrame {
+    private ImageIcon plusIcon = new ImageIcon(this.getClass().getResource("/plus.png"));
     private Task task;
+    private CommandsPanel commandsPanel;
     TaskEdit(Task task1, String title, Map<Integer, BasicComponent> components, SingleTask singleTask){
 
         super(title);
@@ -32,11 +34,17 @@ public class TaskEdit extends JFrame {
         dateField.setBounds(10, 50, 120, 80);
         add(dateField);
         add(titleField);
-        CommandsPanel commandsPanel = new CommandsPanel(this, task);
+        commandsPanel = new CommandsPanel(this, task);
         JScrollPane rightPanel = new JScrollPane(commandsPanel);
         rightPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         rightPanel.setBounds(10, 140, 480, 500);
         add(rightPanel);
+        JButton addButton = new JButton(plusIcon);
+        addButton.setBounds(400,50,50,50);
+        addButton.addActionListener(e -> {
+            ComponentFrame componentFrame = new ComponentFrame("Component Frame", this, components, task);
+        });
+
         JButton button = new JButton("Zatwierdź");
         button.addActionListener(e -> {
             task.setName(titleField.getText());
@@ -45,6 +53,7 @@ public class TaskEdit extends JFrame {
             dispose();
         });
         button.setBounds(200, 50, 150, 50);
+        add(addButton);
         add(button);
 
         setVisible(true);
@@ -56,5 +65,8 @@ public class TaskEdit extends JFrame {
         d.setMinutes(Integer.parseInt(hm[1]));
         task.setDate(d);
         this.task = task;
+    }
+    public CommandsPanel getCommandPanel(){
+        return commandsPanel;
     }
 }

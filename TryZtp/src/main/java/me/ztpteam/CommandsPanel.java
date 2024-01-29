@@ -25,5 +25,7 @@ public class CommandsPanel extends JPanel {
         commandList = task.getCommandList();
         commandList.forEach(c -> box.add(new JLabel(c.getCommandType().getName())));
         add(box);
+        revalidate();
+        repaint();
     }
 }
