@@ -1,6 +1,7 @@
 package me.ztpteam.planning;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,11 +9,11 @@ public class TaskRunner extends Thread{
 
     private static TaskRunner instance;
     private long date;
-    private List<Task> tasks;
+    private List<Task> tasks = new ArrayList<>();
 
     private TaskRunner() {}
 
-    public TaskRunner getInstance() {
+    public static TaskRunner getInstance() {
         if (instance == null) {
             instance = new TaskRunner();
             return instance;
@@ -30,5 +31,9 @@ public class TaskRunner extends Thread{
             });
             date = System.currentTimeMillis();
         }
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 }

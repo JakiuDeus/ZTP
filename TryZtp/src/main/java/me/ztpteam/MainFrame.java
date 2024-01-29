@@ -2,6 +2,7 @@ package me.ztpteam;
 
 import me.ztpteam.commands.Command;
 import me.ztpteam.commands.SeeInfoCommand;
+import me.ztpteam.planning.TaskRunner;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -26,7 +27,6 @@ public class MainFrame extends JFrame {
 
     private final JButton addButton = new JButton("dodaj");
     private final JLabel taskListLabel = new JLabel("Zaplanowane akcje");
-
 
     public MainFrame(String title, Map<Integer, BasicComponent> components) {
         super(title);

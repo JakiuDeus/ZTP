@@ -18,7 +18,7 @@ public class TaskEdit extends JFrame {
         setLocation(MouseInfo.getPointerInfo().getLocation());
         setLayout(null);
         setSize(600,400);
-        JTextField titleField = new JTextField();
+        JTextField titleField = new JTextField(task.getName());
         titleField.setBorder(new LineBorder(Color.BLACK, 1));
         titleField.setFont(new Font("Arial", Font.PLAIN, 20));
 

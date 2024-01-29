@@ -1,6 +1,7 @@
 package me.ztpteam;
 
 import me.ztpteam.planning.Task;
+import me.ztpteam.planning.TaskRunner;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -24,20 +25,23 @@ public class SingleTask extends JPanel {
     private JLabel taskTitle;
     private JLabel taskDate;
     SingleTask(int count, JPanel taskPanel, Map<Integer, BasicComponent> components){
+        Date currentDate = new Date();
+        long currentTimeMillis = currentDate.getTime();
+        long oneHourInMillis = (long) 60 * 60 * 1000;
+        long updatedTimeMillis = currentTimeMillis + oneHourInMillis;
+        Date updatedDate = new Date(updatedTimeMillis);
+        Task task = new Task(new ArrayList<>(),  updatedDate);
+        TaskRunner.getInstance().addTask(task);
         id = count;
 
         setBounds(5,50*count,450,150);
         setLayout(null);
-        taskTitle = new JLabel(String.valueOf(id));
+        taskTitle = new JLabel(task.getName());
         taskTitle.setBorder(new LineBorder(Color.BLACK, 1));
         taskTitle.setFont(new Font("Arial", Font.PLAIN, 20));
         add(taskTitle);
         taskTitle.setBounds(10,10, 480, 30);
-
-
-        Task task = new Task(new ArrayList<>(), new Date());
-
-        taskDate = new JLabel("test");
+        taskDate = new JLabel(task.getDate().getHours()+ ":"+ task.getDate().getMinutes());
         taskDate.setBorder(new LineBorder(Color.BLACK, 1));
         taskDate.setFont(new Font("Arial", Font.PLAIN, 40));
         add(taskDate);

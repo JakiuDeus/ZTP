@@ -1,6 +1,8 @@
 package me.ztpteam;
 
 import me.ztpteam.boards.Board;
+import me.ztpteam.planning.Task;
+import me.ztpteam.planning.TaskRunner;
 
 import javax.swing.*;
 import java.awt.*;
