@@ -46,7 +46,7 @@ public class MainFrame extends JFrame {
         firstPanel.add(addButton);
         taskPanel.add(firstPanel);
         addButton.addActionListener(addButtonFunctionality(components));
-        infoPanel = new InfoPanel();
+        infoPanel = new InfoPanel(this);
         JScrollPane rightPanel = new JScrollPane(taskPanel);
         rightPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         leftPanel = new JPanel(new CardLayout());

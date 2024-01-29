@@ -1,6 +1,8 @@
 package me.ztpteam;
 
 import me.ztpteam.commands.Command;
+import me.ztpteam.commands.SetLEDCommand;
+import me.ztpteam.commands.TuneLightCommand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +21,13 @@ public class OptionFrame extends JFrame {
             JButton button = new JButton(c.getCommandType().getName());
             button.setSize(150, 50);
             button.addActionListener(e -> {
-                c.execute();
+                if (c instanceof SetLEDCommand) {
+                    new SetLedJFrame((SetLEDCommand) c);
+                } else if (c instanceof TuneLightCommand) {
+                    new TuneLightJFrame((TuneLightCommand) c);
+                } else {
+                    c.execute();
+                }
                 dispose();
             });
             add(button);

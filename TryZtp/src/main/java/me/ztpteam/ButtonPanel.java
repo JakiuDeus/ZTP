@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 class ButtonPanel extends JPanel {
-    ImageIcon bulb = new ImageIcon("/lightbulb.jpg");
+    ImageIcon bulb = new ImageIcon(App.class.getResource("/lightbulb.jpg"));
 
     public ButtonPanel(MainFrame frame, Map<Integer, BasicComponent> components) {
         setLayout(new GridLayout(4, 3));
@@ -21,7 +21,9 @@ class ButtonPanel extends JPanel {
                 button.setEnabled(false);
                 button.setBackground(Color.orange);
             } else {
-                button = new JButton(String.valueOf(bc.getType()));
+                StringBuilder sb = new StringBuilder();
+                bc.getType().forEach(type -> sb.append(type.getName()).append(" "));
+                button = new JButton(sb.toString());
                 button.setIcon(bulb);
                 button.setHorizontalTextPosition(AbstractButton.CENTER);
                 button.setVerticalTextPosition(AbstractButton.BOTTOM);

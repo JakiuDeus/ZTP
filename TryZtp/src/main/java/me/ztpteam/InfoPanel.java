@@ -8,13 +8,16 @@ class InfoPanel extends JPanel {
     private JLabel l2 = new JLabel("Empty2");
     private Box box;
 
-    public InfoPanel() {
+    public InfoPanel(MainFrame mainFrame) {
         l1.setFont(new Font("Serif", Font.PLAIN, 26));
         l2.setFont(new Font("Serif", Font.PLAIN, 26));
         box = Box.createVerticalBox();
         add(box);
         box.add(l1);
         box.add(l2);
+        JButton exit = new JButton("Powrót");
+        exit.addActionListener(e -> mainFrame.setButtonPanel());
+        box.add(exit);
     }
 
     public void setComponent(BasicComponent component) {

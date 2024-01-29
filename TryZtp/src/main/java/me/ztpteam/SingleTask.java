@@ -24,8 +24,6 @@ public class SingleTask extends JPanel {
         add(taskTitle);
         taskTitle.setBounds(10,10, 480, 30);
 
-
-
         JLabel taskDate = new JLabel("test");
         taskDate.setBorder(new LineBorder(Color.BLACK, 1));
         taskDate.setFont(new Font("Arial", Font.PLAIN, 40));
@@ -53,25 +51,15 @@ public class SingleTask extends JPanel {
             taskPanel.remove(this);
             taskPanel.revalidate();
             taskPanel.repaint();
-            for(int i = id+1; i <=taskPanel.getComponentCount(); i++ ){
+            for(int i = id+1; i < taskPanel.getComponentCount(); i++ ){
                 SingleTask p = (SingleTask) taskPanel.getComponent(i);
                 p.setBounds(5,50*i,450,150);
                 p.setId(i);
             }
-
-
-
         });
         add(deleteButton);
-
-
-
         setBorder(new LineBorder(Color.BLACK, 1));
-
-
     }
-
-
 
     public int getId(){
         return this.id;
