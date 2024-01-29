@@ -20,12 +20,15 @@ public class SingleTask extends JPanel {
     private ImageIcon editIcon = new ImageIcon(this.getClass().getResource("/edit.png"));
     private ImageIcon powerIcon = new ImageIcon(this.getClass().getResource("/power.png"));
     private int id;
+
+    private JLabel taskTitle;
+    private JLabel taskDate;
     SingleTask(int count, JPanel taskPanel, Map<Integer, BasicComponent> components){
         id = count;
 
         setBounds(5,50*count,450,150);
         setLayout(null);
-        JLabel taskTitle = new JLabel(String.valueOf(id));
+        taskTitle = new JLabel(String.valueOf(id));
         taskTitle.setBorder(new LineBorder(Color.BLACK, 1));
         taskTitle.setFont(new Font("Arial", Font.PLAIN, 20));
         add(taskTitle);
@@ -34,7 +37,7 @@ public class SingleTask extends JPanel {
 
         Task task = new Task(new ArrayList<>(), new Date());
 
-        JLabel taskDate = new JLabel("test");
+        taskDate = new JLabel("test");
         taskDate.setBorder(new LineBorder(Color.BLACK, 1));
         taskDate.setFont(new Font("Arial", Font.PLAIN, 40));
         add(taskDate);
@@ -47,11 +50,8 @@ public class SingleTask extends JPanel {
         JButton editButton = new JButton(editIcon);
         editButton.setBounds(305, 90, 50, 50);
         editButton.setBackground(Color.white);
-        editButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TaskEdit taskEdit = new TaskEdit(task, "TaskEdit", components);
-            }
+        editButton.addActionListener(e -> {
+            TaskEdit taskEdit = new TaskEdit(task, "TaskEdit", components, this);
         });
         add(editButton);
 
@@ -71,6 +71,10 @@ public class SingleTask extends JPanel {
         setBorder(new LineBorder(Color.BLACK, 1));
     }
 
+    public void updateTask(Task task) {
+        taskTitle.setText(task.getName());
+        taskDate.setText(task.getDate().getHours()+ ":"+ task.getDate().getMinutes());
+    }
     public int getId(){
         return this.id;
     }

@@ -28,9 +28,6 @@ public class MainFrame extends JFrame {
     private final JLabel taskListLabel = new JLabel("Zaplanowane akcje");
 
 
-
-
-
     public MainFrame(String title, Map<Integer, BasicComponent> components) {
         super(title);
         setSize(1280, 720);
@@ -69,18 +66,15 @@ public class MainFrame extends JFrame {
         cl.show(leftPanel, BUTTON_PANEL);
     }
     private ActionListener addButtonFunctionality(Map<Integer, BasicComponent> components){
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(taskPanel.getComponentCount()< sizeList-1){
+        return e -> {
+            if(taskPanel.getComponentCount()< sizeList-1){
 
-                    taskPanel.add(new SingleTask(taskPanel.getComponentCount(), taskPanel, components));
-                    taskPanel.revalidate();
-                    taskPanel.repaint();
+                taskPanel.add(new SingleTask(taskPanel.getComponentCount(), taskPanel, components));
+                taskPanel.revalidate();
+                taskPanel.repaint();
 
-                }else{
-                    addButton.setEnabled(false);
-                }
+            }else{
+                addButton.setEnabled(false);
             }
         };
     }
