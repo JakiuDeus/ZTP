@@ -11,7 +11,6 @@ import java.awt.event.WindowEvent;
 public class SetLedJFrame extends JFrame{
     public SetLedJFrame(SetLEDCommand c) {
         setLocation(MouseInfo.getPointerInfo().getLocation());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 300);
         setResizable(false);
         Box box = Box.createVerticalBox();

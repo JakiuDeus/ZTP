@@ -30,6 +30,7 @@ public class SingleTask extends JPanel {
         long oneHourInMillis = (long) 60 * 60 * 1000;
         long updatedTimeMillis = currentTimeMillis + oneHourInMillis;
         Date updatedDate = new Date(updatedTimeMillis);
+        updatedDate.setSeconds(0);
         Task task = new Task(new ArrayList<>(),  updatedDate);
         TaskRunner.getInstance().addTask(task);
         id = count;
